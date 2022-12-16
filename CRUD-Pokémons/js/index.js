@@ -1,7 +1,9 @@
 'use strict';
 
 const documentReady = () => {
-  const pokemons = [];
+  const POKEMONS_CRUD_DATA = 'pokemons-crud';
+
+  const pokemons= JSON.parse(localStorage.getItem(POKEMONS_CRUD_DATA)) ?? [];
   const formPokemon = document.getElementById('formPokemon');
 
   const createPokemon = (e) => {
@@ -14,6 +16,7 @@ const documentReady = () => {
     const special = documentFormPokemon.special.value;
     const imgUrl = documentFormPokemon.imgUrl.value;
     pokemons.push({ name, type, hp, attack, special, imgUrl });
+    localStorage.setItem('pokemons-crud', JSON.stringify(pokemons));
     readPokemons();
   };
 
@@ -24,7 +27,7 @@ const documentReady = () => {
       const { name, type, hp, attack, special, imgUrl } = element;
       tBodyPokemons.innerHTML += `
         <tr>
-          <td>${index}</td>
+          <td>${index + 1}</td>
           <td>${name}</td>
           <td>${type}</td>
           <td>${hp}</td>
@@ -39,7 +42,7 @@ const documentReady = () => {
       `;
     });
   };
-
+  readPokemons();
   formPokemon.addEventListener('submit', createPokemon);
 };
 

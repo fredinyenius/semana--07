@@ -1,0 +1,14 @@
+{
+    "profile": {
+        "id": 1,
+        "name": "Fredy Mamani Canahua",
+        "slogan":"El mejor desarrollador  de software",
+        "username": "fredymamani",
+        "title": "desarrollador Frontend",
+        "mainStacks": "html, css, javaScript, React",
+        "descripton": "desarrollador  de bibliotecas",
+        "urlPhoto": "",
+        "urlLinkedIn": "https://www.linkedin.com/feed/",
+        "urlCv": "https://www.linkedin.com/feed/"
+    }
+}

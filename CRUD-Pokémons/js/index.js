@@ -1,10 +1,10 @@
 'use strict';
 
-const documentReady = () => {
+
   const POKEMONS_CRUD_DATA = 'pokemons-crud';
 
   const pokemons= JSON.parse(localStorage.getItem(POKEMONS_CRUD_DATA)) ?? [];
-  const formPokemon = document.getElementById('formPokemon');
+  
 
   const createPokemon = (e) => {
     e.preventDefault();
@@ -38,10 +38,60 @@ const documentReady = () => {
               src="${imgUrl}"
               alt="${name}" class="img-fluid" style="max-width: 128px;" />
           </td>
+          <td>
+          <button class="btn btn-danger"
+          onclick="deletePokemon(${index})">
+          🗑
+          </button>
+          </td>
         </tr>
       `;
     });
   };
+
+  const deletePokemon = (index) => {
+const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        pokemons.splice(index, 1);
+        localStorage.setItem(POKEMONS_CRUD_DATA, JSON.stringify(pokemons));
+        readPokemons();
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })  
+  };
+
+  const documentReady = () => {
+  const formPokemon = document.getElementById('formPokemon');
+
   readPokemons();
   formPokemon.addEventListener('submit', createPokemon);
 };

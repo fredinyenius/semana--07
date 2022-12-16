@@ -40,6 +40,10 @@
           </td>
           <td>
           <button class="btn btn-danger"
+          onclick="readPokemon(${index})">
+          ✍
+          </button>
+          <button class="btn btn-info m-1"
           onclick="deletePokemon(${index})">
           🗑
           </button>
@@ -48,8 +52,15 @@
       `;
     });
   };
+  const readPokemon = (index) => {
+
+     const pokemon = pokemons.slice(index, index + 1)[0];
+     console.log(pokemon);
+  };
 
   const deletePokemon = (index) => {
+
+
 const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success mx-1',

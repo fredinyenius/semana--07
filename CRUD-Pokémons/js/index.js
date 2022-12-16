@@ -52,19 +52,19 @@
   const deletePokemon = (index) => {
 const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        confirmButton: 'btn btn-success mx-1',
+        cancelButton: 'btn btn-danger mx-1'
       },
       buttonsStyling: false
     })
     
     swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estas seguro?',
+      text: "¡No podras revertir  esto!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Si, ya fue!',
+      cancelButtonText: 'No, perate!',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -72,17 +72,16 @@ const swalWithBootstrapButtons = Swal.mixin({
         localStorage.setItem(POKEMONS_CRUD_DATA, JSON.stringify(pokemons));
         readPokemons();
         swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          '¡Borrrado!',
+          '¡De todas maneras!',
           'success'
         )
       } else if (
-        /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
+          'Cancelado',
+          'Tu registro esta seguro :)',
           'error'
         )
       }
